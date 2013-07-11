@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Mail Client";
+}
+
+@Scripts.Render("~/Scripts/jquery-1.9.1.js")
+@Scripts.Render("~/Scripts/mail.js")
+
+<p>This very simple mail client was made in an evening by <a href="mailto:StevenAWestbrook@hotmail.com">Steven Westbrook</a>.</p>
+
+<input type="button" value="New" onclick="newMail()" /><input type="button" value="Send" onclick="sendMail()" />
+<p id="resultText"></p>
+<div style="width: 150px;">To:</div><input type="text" id="to" />
+<div style="width: 150px;">Cc:</div><input type="text" id="cc" />
+<div style="width: 150px;">Subject:</div><input type="text" id="subject" />
+<div style="width: 150px;">Message:</div>
+<textarea id="text" style="width: 80%; min-height: 300px;"></textarea>
