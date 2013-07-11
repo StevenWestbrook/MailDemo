@@ -17,8 +17,8 @@ namespace DemoMailer.Controllers
         public HttpResponseMessage SendMail(string to, string cc, string subject, string body)
         {
 
-            string[] toAddresses = (to == null) ? new string[0] : to.Split(';');
-            string[] ccAddresses = (cc == null) ? new string[0] : cc.Split(';');
+            string[] toAddresses = SplitAddresses(to);
+            string[] ccAddresses = SplitAddresses(cc);
 
             // If any of the addresses provided are invalid, refuse the request.
             if (toAddresses.Concat(ccAddresses).Any(address => !Mailer.VerifyEmail(address)))
@@ -39,5 +39,16 @@ namespace DemoMailer.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
+        /// <summary>
+        /// This divides semicolon-delimited addresses into an array of individual addresses, and removes empty entries.
+        /// </summary>
+        /// <param name="addresses">The address list.</param>
+        /// <returns>An array of addresses taken from <paramref name="addresses"/>.</returns>
+        private static string[] SplitAddresses(string addresses)
+        {
+            return (addresses == null) ? 
+                new string[0] : 
+                addresses.Split(';').Where(address => address.Trim().Length > 0).ToArray();
+        }
     }
 }
