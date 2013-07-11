@@ -21,7 +21,7 @@ function sendMail() {
     var body = $("#text");
 
     $.ajax({
-        url: "../api/mail/send?to=" + to.val() + "&cc=" + cc.val() + "&subject=" + subj.val() + "&body=" + body.val(),
+        url: "../api/mail/send?to=" + encodeURIComponent(to.val()) + "&cc=" + encodeURIComponent(cc.val()) + "&subject=" + encodeURIComponent(subj.val()) + "&body=" + encodeURIComponent(body.val()),
         method: "post",
         success: function(data) {
             $("#resultText").text("Mail sent successfully.");

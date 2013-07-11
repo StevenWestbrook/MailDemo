@@ -48,7 +48,7 @@ namespace DemoMailer.Controllers
         {
             return (addresses == null) ? 
                 new string[0] : 
-                addresses.Split(';').Where(address => address.Trim().Length > 0).ToArray();
+                addresses.Split(';').Select(address => address.Trim()).Where(address => address.Length > 0).ToArray();
         }
     }
 }
